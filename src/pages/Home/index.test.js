@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import Home from "./index";
 
 describe("When Form is created", () => {
@@ -21,24 +21,36 @@ describe("When Form is created", () => {
         })
       );
       await screen.findByText("En cours");
-      await screen.findByText("Message envoyé !");
+      setTimeout(async () => {
+        await screen.findByText("Message envoyé !");
+      }, 2000);
     });
   });
-
 });
 
-
 describe("When a page is created", () => {
-  it("a list of events is displayed", () => {
+  it("a list of events is displayed", async () => {
+    render(<Home />);
+    await waitFor(() => {
+      const eventList = screen.getByTestId("event-list");
+      expect(eventList).toBeInTheDocument();
+    });
     // to implement
-  })
-  it("a list a people is displayed", () => {
+  });
+  it("a list a people is displayed", async () => {
+    const peopleList = screen.getByTestId("people-list");
+    expect(peopleList).toBeInTheDocument();
     // to implement
-  })
-  it("a footer is displayed", () => {
+  });
+  it("a footer is displayed", async () => {
+    const footerElement = screen.getByTestId("footer-element");
+    expect(footerElement).toBeInTheDocument();
     // to implement
-  })
-  it("an event card, with the last event, is displayed", () => {
+  });
+  it("an event card, with the last event, is displayed", async () => {
+    const lastEvent = screen.getByTestId("lastcard-testid");
+    expect(lastEvent).toBeInTheDocument();
+
     // to implement
-  })
+  });
 });

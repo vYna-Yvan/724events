@@ -13,28 +13,28 @@ const EventList = () => {
   const { data, error } = useData();
   const [type, setType] = useState();
   const [currentPage, setCurrentPage] = useState(1);
-  const filteredEvents = (
-    (!type
-      ? data?.events
-      : data?.events) || []
-  ).filter((event, index) => {
-    if (
-      (currentPage - 1) * PER_PAGE <= index &&
-      PER_PAGE * currentPage > index
-    ) {
-      return true;
-    }
-    return false;
-  });
+  const filteredEvents = (data?.events || [])
+    .filter(
+      (event) => type === undefined || type === null || event.type === type
+    )
+    .slice((currentPage - 1) * PER_PAGE, currentPage * PER_PAGE);
   const changeType = (evtType) => {
     setCurrentPage(1);
+
     setType(evtType);
   };
+
   const pageNumber = Math.floor((filteredEvents?.length || 0) / PER_PAGE) + 1;
-  const typeList = new Set(data?.events.map((event) => event.type));
+  const typeList = new Set(data?.events.map((event) => event.type)); // créer un Set si data?.events est nul. Vous pouvez ajouter une vérification avant de créer le Set.
+
   return (
     <>
-      {error && <div>An error occured</div>}
+      {
+        error && (
+          <div>{`An error occurred: ${error.message}`}</div>
+        ) /** Vérification d'érreur */
+      }
+
       {data === null ? (
         "loading"
       ) : (

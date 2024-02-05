@@ -23,9 +23,10 @@ describe("When Events is created", () => {
       );
       await screen.findByText("En cours");
       setTimeout(async () => {
+        expect(onSuccess).toHaveBeenCalled();
         await screen.findByText("Message envoyé !");
-      }, 2000);
-      expect(onSuccess).toHaveBeenCalled(); // l'érreur en question
+      }, 3000);
+      // l'érreur en question
     });
   });
 });

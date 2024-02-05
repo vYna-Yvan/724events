@@ -23,7 +23,7 @@ describe("When Form is created", () => {
       await screen.findByText("En cours");
       setTimeout(async () => {
         await screen.findByText("Message envoyé !");
-      }, 2000);
+      }, 3000);
     });
   });
 });
@@ -38,16 +38,19 @@ describe("When a page is created", () => {
     // to implement
   });
   it("a list a people is displayed", async () => {
+    render(<Home />);
     const peopleList = screen.getByTestId("people-list");
     expect(peopleList).toBeInTheDocument();
     // to implement
   });
   it("a footer is displayed", async () => {
+    render(<Home />);
     const footerElement = screen.getByTestId("footer-element");
     expect(footerElement).toBeInTheDocument();
     // to implement
   });
   it("an event card, with the last event, is displayed", async () => {
+    render(<Home />);
     const lastEvent = screen.getByTestId("lastcard-testid");
     expect(lastEvent).toBeInTheDocument();
 

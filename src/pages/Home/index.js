@@ -111,7 +111,6 @@ const Page = () => {
               <Form onSuccess={() => setIsOpened(true)} onError={() => null} />
             )}
           </Modal>
-          a
         </div>
       </main>
       <footer className="row" data-testid="footer-element">

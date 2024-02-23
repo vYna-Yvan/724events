@@ -22,7 +22,7 @@ const Page = () => {
         <Menu />
       </header>
       <main>
-        <section className="SliderContainer">
+        <section className="SliderContainer" data-testid="Slider">
           <Slider />
         </section>
         <section className="ServicesContainer">
@@ -63,6 +63,7 @@ const Page = () => {
           <p>Une équipe d’experts dédiés à l’ogranisation de vos événements</p>
           <div data-testid="people-list" className="ListContainer">
             <PeopleCard
+              data-testid="Samira-card"
               imageSrc="/images/stephanie-liverani-Zz5LQe-VSMY-unsplash.png"
               name="Samira"
               position="CEO"

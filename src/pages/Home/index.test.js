@@ -57,3 +57,11 @@ describe("When a page is created", () => {
     // to implement
   });
 });
+
+describe("When a page is created", () => {
+  it("slider of event is displayed", async () => {
+    render(<Home />);
+    const sliderElement = screen.getByTestId("Slider");
+    expect(sliderElement).toBeInTheDocument(); // test ajouter
+  });
+});
